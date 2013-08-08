@@ -11,14 +11,13 @@ var rs = {
     taskDao:null,
 
     init:function (connectedCallback) {
-        remoteStorage.util.silenceAllLoggers();
-        remoteStorage.claimAccess('tasks', 'rw').
+        remoteStorage.access.claim('tasks', 'rw').
             then(function() {
                 remoteStorage.displayWidget('remotestorage-connect')
-                remoteStorage.onWidget('ready', function() {
+                remoteStorage.on('ready', function() {
                     connectedCallback(true);
                 });
-                remoteStorage.onWidget('disconnect', function() {
+                remoteStorage.on('disconnect', function() {
                     connectedCallback(false);
                 });
                 // 'ready' won't be fired until the next tick, so it's safe to

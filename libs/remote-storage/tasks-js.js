@@ -1,6 +1,6 @@
 var moduleName = "tasks";
 
-remoteStorage.defineModule(moduleName, function(myPrivateBaseClient, myPublicBaseClient) {
+RemoteStorage.defineModule(moduleName, function(myPrivateBaseClient, myPublicBaseClient) {
 
     // Namespace: remoteStorage.tasks
     //
