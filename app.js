@@ -11,19 +11,17 @@ var rs = {
     taskDao:null,
 
     init:function (connectedCallback) {
-        remoteStorage.access.claim('tasks', 'rw').
-            then(function() {
-                remoteStorage.displayWidget('remotestorage-connect')
-                remoteStorage.on('ready', function() {
-                    connectedCallback(true);
-                });
-                remoteStorage.on('disconnect', function() {
-                    connectedCallback(false);
-                });
-                // 'ready' won't be fired until the next tick, so it's safe to
-                // default to 'false' at this point.
-                connectedCallback(false);
-            }.bind(this));
+        remoteStorage.access.claim('tasks', 'rw');
+        remoteStorage.displayWidget();
+        remoteStorage.on('ready', function() {
+            connectedCallback(true);
+        });
+        remoteStorage.on('disconnect', function() {
+            connectedCallback(false);
+        });
+        // 'ready' won't be fired until the next tick, so it's safe to
+        // default to 'false' at this point.
+        connectedCallback(false);
         this.taskDao = remoteStorage.tasks.getPrivateList('todos');
     },
 
